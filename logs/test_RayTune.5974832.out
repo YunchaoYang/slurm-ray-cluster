@@ -1,0 +1,1114 @@
+head_node=c1000a-s11.ufhpc
+head_node_ip=172.16.204.121
+STARTING HEAD at c1000a-s11.ufhpc
+Head node IP: 172.16.204.121
+start-head.sh: line 3: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8): No such file or directory
+start-head.sh: line 3: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+starting ray head node
+2023-08-09 15:55:45,536	INFO usage_lib.py:407 -- Usage stats collection is enabled by default without user confirmation because this terminal is detected to be non-interactive. To disable this, add `--disable-usage-stats` to the command that starts the cluster, or run the following command: `ray disable-usage-stats` before starting the cluster. See https://docs.ray.io/en/master/cluster/usage-stats.html for more details.
+2023-08-09 15:55:45,536	INFO scripts.py:722 -- Local node IP: 172.16.204.121
+2023-08-09 15:55:48,119	SUCC scripts.py:759 -- --------------------
+2023-08-09 15:55:48,120	SUCC scripts.py:760 -- Ray runtime started.
+2023-08-09 15:55:48,120	SUCC scripts.py:761 -- --------------------
+2023-08-09 15:55:48,120	INFO scripts.py:763 -- Next steps
+2023-08-09 15:55:48,120	INFO scripts.py:766 -- To add another node to this Ray cluster, run
+2023-08-09 15:55:48,120	INFO scripts.py:769 --   ray start --address='172.16.204.121:6379'
+2023-08-09 15:55:48,120	INFO scripts.py:778 -- To connect to this Ray cluster:
+2023-08-09 15:55:48,120	INFO scripts.py:780 -- import ray
+2023-08-09 15:55:48,120	INFO scripts.py:781 -- ray.init(_node_ip_address='172.16.204.121')
+2023-08-09 15:55:48,120	INFO scripts.py:812 -- To terminate the Ray runtime, run
+2023-08-09 15:55:48,120	INFO scripts.py:813 --   ray stop
+2023-08-09 15:55:48,120	INFO scripts.py:816 -- To view the status of the cluster, use
+2023-08-09 15:55:48,120	INFO scripts.py:817 --   ray status
+worker_num=1
+start-worker.sh: line 3: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8): No such file or directory
+start-worker.sh: line 3: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+starting ray worker node
+[2023-08-09 15:55:55,601 I 41029 41029] global_state_accessor.cc:356: This node has an IP address of 172.16.204.127, but we cannot find a local Raylet with the same address. This can happen when you connect to the Ray cluster with a different IP address or when connecting to a container.
+2023-08-09 15:55:55,538	INFO scripts.py:904 -- Local node IP: 172.16.204.127
+2023-08-09 15:55:55,601	SUCC scripts.py:916 -- --------------------
+2023-08-09 15:55:55,601	SUCC scripts.py:917 -- Ray runtime started.
+2023-08-09 15:55:55,601	SUCC scripts.py:918 -- --------------------
+2023-08-09 15:55:55,601	INFO scripts.py:920 -- To terminate the Ray runtime, run
+2023-08-09 15:55:55,601	INFO scripts.py:921 --   ray stop
+2023-08-09 15:56:01,012	INFO worker.py:1431 -- Connecting to existing Ray cluster at address: 172.16.204.121:6379...
+[2023-08-09 15:56:01,018 I 100274 100274] global_state_accessor.cc:356: This node has an IP address of 10.13.172.121, but we cannot find a local Raylet with the same address. This can happen when you connect to the Ray cluster with a different IP address or when connecting to a container.
+2023-08-09 15:56:01,025	INFO worker.py:1621 -- Connected to Ray cluster.
+2023-08-09 15:56:09,839	INFO tune.py:666 -- [output] This will use the new output engine with verbosity 1. To disable the new output and use the legacy output engine, set the environment variable RAY_AIR_NEW_OUTPUT=0. For more information, please see https://github.com/ray-project/ray/issues/36949
+[2m[33m(raylet)[0m bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+[2m[33m(raylet)[0m bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+[2m[33m(raylet)[0m bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+[2m[33m(raylet)[0m bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+[2m[33m(raylet, ip=10.13.172.127)[0m bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+[2m[33m(raylet, ip=10.13.172.127)[0m bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+[2m[33m(raylet, ip=10.13.172.127)[0m bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+[2m[33m(raylet, ip=10.13.172.127)[0m bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+2023-08-09 15:56:18,923	WARNING syncer.py:845 -- Ray AIR no longer supports the synchronization of checkpoints and other artifacts from worker nodes to the head node. This means that the checkpoints and artifacts saved by trials scheduled on worker nodes will not be accessible during the run (e.g., resuming from a checkpoint after a failure) or after the run (e.g., loading the checkpoint of a trial that ran on an already terminated worker node).
+
+To fix this issue, configure AIR to use either:
+(1) Cloud storage: `RunConfig(storage_path='s3://your/bucket')`
+(2) A network filesystem mounted on all nodes: `RunConfig(storage_path='/mnt/path/to/nfs_storage')`
+See this Github issue for more details on transitioning to cloud storage/NFS as well as an explanation on why this functionality is being removed: https://github.com/ray-project/ray/issues/37177
+If you are already using NFS, you can ignore this warning message.
+
+Other temporary workarounds:
+- If you want to avoid errors/warnings and continue running with syncing explicitly turned off, set `RunConfig(SyncConfig(syncer=None))`
+- Or, to re-enable the head node syncing behavior, set the environment variable RAY_AIR_REENABLE_DEPRECATED_SYNC_TO_HEAD_NODE=1
+  - **Note that this functionality will tentatively be hard-deprecated in Ray 2.7.** See the linked issue for the latest information.
+2023-08-09 15:56:20,984	ERROR worker.py:405 -- Unhandled error (suppress with 'RAY_IGNORE_UNHANDLED_ERRORS=1'): The worker died unexpectedly while executing this task. Check python-core-worker-*.log files for more information.
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m 2023-08-09 15:56:20,981	ERROR worker.py:779 -- Worker exits with an exit code 1.
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m Traceback (most recent call last):
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "python/ray/_raylet.pyx", line 1787, in ray._raylet.task_execution_handler
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "python/ray/_raylet.pyx", line 1684, in ray._raylet.execute_task_with_cancellation_handler
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "python/ray/_raylet.pyx", line 1366, in ray._raylet.execute_task
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "python/ray/_raylet.pyx", line 1367, in ray._raylet.execute_task
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "python/ray/_raylet.pyx", line 1370, in ray._raylet.execute_task
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "python/ray/_raylet.pyx", line 1398, in ray._raylet.execute_task
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "python/ray/_raylet.pyx", line 1400, in ray._raylet.execute_task
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/ray/_private/worker.py", line 724, in deserialize_objects
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m     context = self.get_serialization_context()
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/ray/_private/worker.py", line 612, in get_serialization_context
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m     context_map[job_id] = serialization.SerializationContext(self)
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/ray/_private/serialization.py", line 151, in __init__
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m     serialization_addons.apply(self)
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/ray/util/serialization_addons.py", line 86, in apply
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m     _register_custom_datasets_serializers(serialization_context)
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/ray/_private/arrow_serialization.py", line 46, in _register_custom_datasets_serializers
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m     import pyarrow as pa  # noqa: F401
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/pyarrow/__init__.py", line 65, in <module>
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m     import pyarrow.lib as _lib
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "pyarrow/lib.pyx", line 24, in init pyarrow.lib
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/numpy/__init__.py", line 140, in <module>
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m     from . import core
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/numpy/core/__init__.py", line 71, in <module>
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m     from . import numerictypes as nt
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/numpy/core/numerictypes.py", line 104, in <module>
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m     from ._type_aliases import (
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/numpy/core/_type_aliases.py", line 23, in <module>
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m     from numpy.core._dtype import _kind_name
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "<frozen importlib._bootstrap_external>", line 839, in exec_module
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "<frozen importlib._bootstrap_external>", line 934, in get_code
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "<frozen importlib._bootstrap_external>", line 1032, in get_data
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/ray/_private/worker.py", line 776, in sigterm_handler
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m     sys.exit(1)
+[2m[36m(bundle_reservation_check_func pid=44211, ip=10.13.172.127)[0m SystemExit: 1
+[2m[33m(raylet, ip=10.13.172.127)[0m bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+[2m[33m(raylet, ip=10.13.172.127)[0m bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+[2m[33m(raylet, ip=10.13.172.127)[0m bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+[2m[33m(raylet, ip=10.13.172.127)[0m bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m     _sanity_check()
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/numpy/__init__.py", line 335, in _sanity_check
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m     if not abs(x.dot(x) - 2.0) < 1e-5:
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m 2023-08-09 15:56:26,942	ERROR worker.py:779 -- Worker exits with an exit code 1.
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m Traceback (most recent call last):
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m   File "python/ray/_raylet.pyx", line 1787, in ray._raylet.task_execution_handler
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m   File "python/ray/_raylet.pyx", line 1684, in ray._raylet.execute_task_with_cancellation_handler
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m   File "python/ray/_raylet.pyx", line 1400, in ray._raylet.execute_task[32m [repeated 5x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/ray-logging.html#log-deduplication for more options.)[0m
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/ray/_private/worker.py", line 724, in deserialize_objects
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m     context = self.get_serialization_context()
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/ray/_private/worker.py", line 612, in get_serialization_context
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m     context_map[job_id] = serialization.SerializationContext(self)
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/ray/_private/serialization.py", line 151, in __init__
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m     serialization_addons.apply(self)
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/ray/util/serialization_addons.py", line 86, in apply
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m     _register_custom_datasets_serializers(serialization_context)
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/ray/_private/arrow_serialization.py", line 46, in _register_custom_datasets_serializers
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m     import pyarrow as pa  # noqa: F401
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/numpy/__init__.py", line 345, in <module>[32m [repeated 2x across cluster][0m
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m     import pyarrow.lib as _lib
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m   File "pyarrow/lib.pyx", line 24, in init pyarrow.lib
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m   File "/red/ufhpc/hityangsir/.conda/envs/torch-timm/lib/python3.8/site-packages/ray/_private/worker.py", line 776, in sigterm_handler
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m     sys.exit(1)
+[2m[36m(bundle_reservation_check_func pid=44873, ip=10.13.172.127)[0m SystemExit: 1
+2023-08-09 15:56:27,055	ERROR worker.py:405 -- Unhandled error (suppress with 'RAY_IGNORE_UNHANDLED_ERRORS=1'): The worker died unexpectedly while executing this task. Check python-core-worker-*.log files for more information.
+[2m[33m(raylet, ip=10.13.172.127)[0m bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+[2m[33m(raylet, ip=10.13.172.127)[0m bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+[2m[33m(raylet, ip=10.13.172.127)[0m bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+╭──────────────────────────────────────────────────────────╮
+│ Configuration for experiment     exp                     │
+├──────────────────────────────────────────────────────────┤
+│ Search algorithm                 BasicVariantGenerator   │
+│ Scheduler                        AsyncHyperBandScheduler │
+│ Number of trials                 50                      │
+╰──────────────────────────────────────────────────────────╯
+
+View detailed results here: /home/hityangsir/ray_results/exp
+To visualize your results with TensorBoard, run: `tensorboard --logdir /home/hityangsir/ray_results/exp`
+
+Trial status: 50 PENDING
+Current time: 2023-08-09 15:56:11. Total running time: 0s
+Logical resource usage: 128.0/256 CPUs, 4.0/16 GPUs (0.0/2.0 accelerator_type:A100)
+╭───────────────────────────────────────────────────────────────╮
+│ Trial name                status              lr     momentum │
+├───────────────────────────────────────────────────────────────┤
+│ train_mnist_c9146_00000   PENDING    0.00996427      0.722079 │
+│ train_mnist_c9146_00001   PENDING    0.000249318     0.389114 │
+│ train_mnist_c9146_00002   PENDING    0.000158651     0.214777 │
+│ train_mnist_c9146_00003   PENDING    0.000436737     0.235487 │
+│ train_mnist_c9146_00004   PENDING    0.00461449      0.180785 │
+╰───────────────────────────────────────────────────────────────╯
+45 more PENDING
+
+Trial train_mnist_c9146_00000 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00000 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00996 │
+│ momentum                                 0.72208 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00001 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00001 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00025 │
+│ momentum                                 0.38911 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00003 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00003 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00044 │
+│ momentum                                 0.23549 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00002 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00002 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00016 │
+│ momentum                                 0.21478 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00002 completed after 1 iterations at 2023-08-09 15:56:19. Total running time: 8s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00002 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         3.57389 │
+│ time_total_s                             3.57389 │
+│ training_iteration                             1 │
+│ mean_accuracy                             0.1375 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00004 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00004 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00461 │
+│ momentum                                 0.18079 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00003 completed after 1 iterations at 2023-08-09 15:56:19. Total running time: 8s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00003 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         3.67662 │
+│ time_total_s                             3.67662 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.04063 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00001 completed after 1 iterations at 2023-08-09 15:56:19. Total running time: 8s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00001 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         3.71031 │
+│ time_total_s                             3.71031 │
+│ training_iteration                             1 │
+│ mean_accuracy                              0.175 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00005 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00005 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00026 │
+│ momentum                                 0.19953 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00024 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00024 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                        0.0002 │
+│ momentum                                 0.56899 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00004 completed after 1 iterations at 2023-08-09 15:56:19. Total running time: 8s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00004 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16683 │
+│ time_total_s                             0.16683 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.10938 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00006 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00006 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00025 │
+│ momentum                                 0.70113 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00024 completed after 1 iterations at 2023-08-09 15:56:19. Total running time: 8s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00024 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16606 │
+│ time_total_s                             0.16606 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.11563 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00007 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00007 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00035 │
+│ momentum                                 0.88441 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00005 completed after 1 iterations at 2023-08-09 15:56:19. Total running time: 8s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00005 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.21914 │
+│ time_total_s                             0.21914 │
+│ training_iteration                             1 │
+│ mean_accuracy                                0.1 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00008 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00008 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00075 │
+│ momentum                                 0.46635 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00006 completed after 1 iterations at 2023-08-09 15:56:19. Total running time: 8s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00006 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.17452 │
+│ time_total_s                             0.17452 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.13437 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00009 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00009 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00085 │
+│ momentum                                 0.82679 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00007 completed after 1 iterations at 2023-08-09 15:56:19. Total running time: 8s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00007 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                          0.1644 │
+│ time_total_s                              0.1644 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.09688 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00010 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00010 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00172 │
+│ momentum                                 0.82863 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00008 completed after 1 iterations at 2023-08-09 15:56:19. Total running time: 8s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00008 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16463 │
+│ time_total_s                             0.16463 │
+│ training_iteration                             1 │
+│ mean_accuracy                               0.05 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00011 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00011 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00046 │
+│ momentum                                 0.49348 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00009 completed after 1 iterations at 2023-08-09 15:56:19. Total running time: 8s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00009 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16486 │
+│ time_total_s                             0.16486 │
+│ training_iteration                             1 │
+│ mean_accuracy                                0.1 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00012 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00012 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00047 │
+│ momentum                                 0.62543 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00011 completed after 1 iterations at 2023-08-09 15:56:19. Total running time: 8s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00011 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16349 │
+│ time_total_s                             0.16349 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.03125 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00013 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00013 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00024 │
+│ momentum                                 0.19539 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00012 completed after 1 iterations at 2023-08-09 15:56:19. Total running time: 8s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00012 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16422 │
+│ time_total_s                             0.16422 │
+│ training_iteration                             1 │
+│ mean_accuracy                              0.075 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00014 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00014 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00105 │
+│ momentum                                 0.52226 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00013 completed after 1 iterations at 2023-08-09 15:56:19. Total running time: 9s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00013 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16344 │
+│ time_total_s                             0.16344 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.10312 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00015 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00015 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00029 │
+│ momentum                                 0.20181 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00014 completed after 1 iterations at 2023-08-09 15:56:20. Total running time: 9s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00014 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16227 │
+│ time_total_s                             0.16227 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.10625 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00016 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00016 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                        0.0006 │
+│ momentum                                 0.60638 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00010 completed after 4 iterations at 2023-08-09 15:56:20. Total running time: 9s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00010 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.12897 │
+│ time_total_s                             0.55305 │
+│ training_iteration                             4 │
+│ mean_accuracy                            0.39062 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00017 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00017 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00015 │
+│ momentum                                 0.13936 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00015 completed after 1 iterations at 2023-08-09 15:56:20. Total running time: 9s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00015 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.17293 │
+│ time_total_s                             0.17293 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.07812 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00018 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00018 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00011 │
+│ momentum                                 0.63926 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00017 completed after 1 iterations at 2023-08-09 15:56:20. Total running time: 9s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00017 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16508 │
+│ time_total_s                             0.16508 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.12187 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00019 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00019 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00013 │
+│ momentum                                 0.76695 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00018 completed after 1 iterations at 2023-08-09 15:56:20. Total running time: 9s
+╭─────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00018 result            │
+├─────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.1619 │
+│ time_total_s                             0.1619 │
+│ training_iteration                            1 │
+│ mean_accuracy                            0.1125 │
+╰─────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00020 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00020 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00253 │
+│ momentum                                 0.27332 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00019 completed after 1 iterations at 2023-08-09 15:56:20. Total running time: 9s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00019 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16598 │
+│ time_total_s                             0.16598 │
+│ training_iteration                             1 │
+│ mean_accuracy                               0.05 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00021 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00021 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00031 │
+│ momentum                                 0.16004 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00016 completed after 4 iterations at 2023-08-09 15:56:20. Total running time: 9s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00016 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.14473 │
+│ time_total_s                             0.56737 │
+│ training_iteration                             4 │
+│ mean_accuracy                            0.12812 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00022 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00022 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00037 │
+│ momentum                                 0.15653 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00021 completed after 1 iterations at 2023-08-09 15:56:20. Total running time: 9s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00021 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16608 │
+│ time_total_s                             0.16608 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.12187 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00023 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00023 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00574 │
+│ momentum                                 0.64523 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00022 completed after 1 iterations at 2023-08-09 15:56:20. Total running time: 9s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00022 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16663 │
+│ time_total_s                             0.16663 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.10625 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00025 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00025 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00021 │
+│ momentum                                 0.55999 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00023 completed after 1 iterations at 2023-08-09 15:56:20. Total running time: 10s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00023 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.21407 │
+│ time_total_s                             0.21407 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.09062 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00026 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00026 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00417 │
+│ momentum                                 0.31293 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00020 completed after 4 iterations at 2023-08-09 15:56:20. Total running time: 10s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00020 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.12781 │
+│ time_total_s                             0.61119 │
+│ training_iteration                             4 │
+│ mean_accuracy                            0.30312 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00027 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00027 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00355 │
+│ momentum                                 0.17761 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00025 completed after 1 iterations at 2023-08-09 15:56:21. Total running time: 10s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00025 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16806 │
+│ time_total_s                             0.16806 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.10312 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00028 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00028 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00367 │
+│ momentum                                 0.48794 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00027 completed after 1 iterations at 2023-08-09 15:56:21. Total running time: 10s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00027 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16481 │
+│ time_total_s                             0.16481 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.10938 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00029 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00029 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00849 │
+│ momentum                                 0.49134 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00028 completed after 1 iterations at 2023-08-09 15:56:21. Total running time: 10s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00028 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                          0.1645 │
+│ time_total_s                              0.1645 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.09062 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00030 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00030 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00264 │
+│ momentum                                 0.54538 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00030 completed after 1 iterations at 2023-08-09 15:56:21. Total running time: 10s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00030 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16681 │
+│ time_total_s                             0.16681 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.10938 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00031 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00031 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00149 │
+│ momentum                                 0.60627 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00026 completed after 4 iterations at 2023-08-09 15:56:21. Total running time: 10s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00026 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.12842 │
+│ time_total_s                             0.55331 │
+│ training_iteration                             4 │
+│ mean_accuracy                             0.3375 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00032 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00032 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00414 │
+│ momentum                                  0.7859 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00031 completed after 1 iterations at 2023-08-09 15:56:21. Total running time: 10s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00031 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16396 │
+│ time_total_s                             0.16396 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.06875 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00033 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00033 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00012 │
+│ momentum                                 0.36645 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00033 completed after 1 iterations at 2023-08-09 15:56:21. Total running time: 10s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00033 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16321 │
+│ time_total_s                             0.16321 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.07812 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00034 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00034 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00979 │
+│ momentum                                 0.57289 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00029 completed after 16 iterations at 2023-08-09 15:56:23. Total running time: 12s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00029 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.12805 │
+│ time_total_s                             2.08851 │
+│ training_iteration                            16 │
+│ mean_accuracy                               0.85 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00035 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00035 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00016 │
+│ momentum                                 0.85684 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00035 completed after 4 iterations at 2023-08-09 15:56:23. Total running time: 12s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00035 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.12834 │
+│ time_total_s                             0.57233 │
+│ training_iteration                             4 │
+│ mean_accuracy                            0.14688 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00036 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00036 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00371 │
+│ momentum                                 0.54289 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00036 completed after 4 iterations at 2023-08-09 15:56:24. Total running time: 13s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00036 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.12735 │
+│ time_total_s                             0.55516 │
+│ training_iteration                             4 │
+│ mean_accuracy                            0.54375 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00037 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00037 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00053 │
+│ momentum                                 0.51587 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00037 completed after 1 iterations at 2023-08-09 15:56:24. Total running time: 13s
+╭─────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00037 result            │
+├─────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.1651 │
+│ time_total_s                             0.1651 │
+│ training_iteration                            1 │
+│ mean_accuracy                            0.0375 │
+╰─────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00038 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00038 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00382 │
+│ momentum                                 0.50157 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00038 completed after 4 iterations at 2023-08-09 15:56:25. Total running time: 14s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00038 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.12861 │
+│ time_total_s                             0.55399 │
+│ training_iteration                             4 │
+│ mean_accuracy                            0.38438 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00039 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00039 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00049 │
+│ momentum                                 0.45266 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00039 completed after 4 iterations at 2023-08-09 15:56:25. Total running time: 14s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00039 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.12837 │
+│ time_total_s                             0.55762 │
+│ training_iteration                             4 │
+│ mean_accuracy                            0.11875 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00040 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00040 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00652 │
+│ momentum                                 0.54869 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00040 completed after 4 iterations at 2023-08-09 15:56:26. Total running time: 15s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00040 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.12801 │
+│ time_total_s                             0.55577 │
+│ training_iteration                             4 │
+│ mean_accuracy                             0.2625 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00041 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00041 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00099 │
+│ momentum                                 0.19364 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00041 completed after 1 iterations at 2023-08-09 15:56:26. Total running time: 15s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00041 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16561 │
+│ time_total_s                             0.16561 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.09375 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00042 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00042 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00018 │
+│ momentum                                  0.1665 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00042 completed after 1 iterations at 2023-08-09 15:56:26. Total running time: 16s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00042 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                          0.1639 │
+│ time_total_s                              0.1639 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.08125 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00043 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00043 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00257 │
+│ momentum                                 0.40296 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00043 completed after 4 iterations at 2023-08-09 15:56:27. Total running time: 16s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00043 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.12729 │
+│ time_total_s                             0.54935 │
+│ training_iteration                             4 │
+│ mean_accuracy                            0.24688 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00044 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00044 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                        0.0027 │
+│ momentum                                 0.10051 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00044 completed after 1 iterations at 2023-08-09 15:56:27. Total running time: 16s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00044 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16424 │
+│ time_total_s                             0.16424 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.12812 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00045 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00045 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00067 │
+│ momentum                                  0.3587 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00045 completed after 1 iterations at 2023-08-09 15:56:27. Total running time: 16s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00045 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16569 │
+│ time_total_s                             0.16569 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.09062 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00046 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00046 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00194 │
+│ momentum                                 0.12372 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00046 completed after 1 iterations at 2023-08-09 15:56:28. Total running time: 17s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00046 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16365 │
+│ time_total_s                             0.16365 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.14062 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00047 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00047 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00757 │
+│ momentum                                 0.55385 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00047 completed after 1 iterations at 2023-08-09 15:56:28. Total running time: 17s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00047 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16592 │
+│ time_total_s                             0.16592 │
+│ training_iteration                             1 │
+│ mean_accuracy                               0.15 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00048 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00048 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00126 │
+│ momentum                                 0.61711 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00048 completed after 1 iterations at 2023-08-09 15:56:28. Total running time: 17s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00048 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16444 │
+│ time_total_s                             0.16444 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.14688 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00049 started with configuration:
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00049 config             │
+├──────────────────────────────────────────────────┤
+│ lr                                       0.00018 │
+│ momentum                                 0.61901 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00049 completed after 1 iterations at 2023-08-09 15:56:28. Total running time: 17s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00049 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.16394 │
+│ time_total_s                             0.16394 │
+│ training_iteration                             1 │
+│ mean_accuracy                            0.08125 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00032 completed after 64 iterations at 2023-08-09 15:56:29. Total running time: 18s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00032 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.12666 │
+│ time_total_s                             8.25563 │
+│ training_iteration                            64 │
+│ mean_accuracy                            0.87813 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00034 completed after 64 iterations at 2023-08-09 15:56:30. Total running time: 19s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00034 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.12878 │
+│ time_total_s                             8.32261 │
+│ training_iteration                            64 │
+│ mean_accuracy                              0.875 │
+╰──────────────────────────────────────────────────╯
+
+Trial train_mnist_c9146_00000 completed after 100 iterations at 2023-08-09 15:56:32. Total running time: 21s
+╭──────────────────────────────────────────────────╮
+│ Trial train_mnist_c9146_00000 result             │
+├──────────────────────────────────────────────────┤
+│ time_this_iter_s                         0.13147 │
+│ time_total_s                             16.7798 │
+│ training_iteration                           100 │
+│ mean_accuracy                            0.91563 │
+╰──────────────────────────────────────────────────╯
+
+Trial status: 50 TERMINATED
+Current time: 2023-08-09 15:56:32. Total running time: 21s
+Logical resource usage: 32.0/256 CPUs, 1.0/16 GPUs (0.0/2.0 accelerator_type:A100)
+Current best trial: c9146_00000 with mean_accuracy=0.915625 and params={'lr': 0.009964272936458532, 'momentum': 0.7220791468460453}
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name                status                lr     momentum        acc     iter     total time (s) │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_mnist_c9146_00000   TERMINATED   0.00996427      0.722079   0.915625      100          16.7798   │
+│ train_mnist_c9146_00001   TERMINATED   0.000249318     0.389114   0.175           1           3.71031  │
+│ train_mnist_c9146_00002   TERMINATED   0.000158651     0.214777   0.1375          1           3.57389  │
+│ train_mnist_c9146_00003   TERMINATED   0.000436737     0.235487   0.040625        1           3.67662  │
+│ train_mnist_c9146_00004   TERMINATED   0.00461449      0.180785   0.109375        1           0.16683  │
+│ train_mnist_c9146_00005   TERMINATED   0.000261727     0.19953    0.1             1           0.219138 │
+│ train_mnist_c9146_00006   TERMINATED   0.0002508       0.701131   0.134375        1           0.174522 │
+│ train_mnist_c9146_00007   TERMINATED   0.000349985     0.88441    0.096875        1           0.164403 │
+│ train_mnist_c9146_00008   TERMINATED   0.000749837     0.466353   0.05            1           0.164627 │
+│ train_mnist_c9146_00009   TERMINATED   0.000854084     0.826786   0.1             1           0.164864 │
+│ train_mnist_c9146_00010   TERMINATED   0.0017235       0.82863    0.390625        4           0.553051 │
+│ train_mnist_c9146_00011   TERMINATED   0.000461425     0.493479   0.03125         1           0.163488 │
+│ train_mnist_c9146_00012   TERMINATED   0.000472395     0.625425   0.075           1           0.164221 │
+│ train_mnist_c9146_00013   TERMINATED   0.000244825     0.195392   0.103125        1           0.163436 │
+│ train_mnist_c9146_00014   TERMINATED   0.0010493       0.522263   0.10625         1           0.162267 │
+│ train_mnist_c9146_00015   TERMINATED   0.000288221     0.201813   0.078125        1           0.172929 │
+│ train_mnist_c9146_00016   TERMINATED   0.000604402     0.606381   0.128125        4           0.567369 │
+│ train_mnist_c9146_00017   TERMINATED   0.000146787     0.139358   0.121875        1           0.165078 │
+│ train_mnist_c9146_00018   TERMINATED   0.000114723     0.63926    0.1125          1           0.161896 │
+│ train_mnist_c9146_00019   TERMINATED   0.000128032     0.766952   0.05            1           0.165977 │
+│ train_mnist_c9146_00020   TERMINATED   0.00253369      0.273317   0.303125        4           0.611193 │
+│ train_mnist_c9146_00021   TERMINATED   0.000312554     0.160039   0.121875        1           0.166075 │
+│ train_mnist_c9146_00022   TERMINATED   0.000369897     0.156527   0.10625         1           0.166634 │
+│ train_mnist_c9146_00023   TERMINATED   0.00574457      0.645226   0.090625        1           0.214069 │
+│ train_mnist_c9146_00024   TERMINATED   0.000199099     0.568989   0.115625        1           0.166063 │
+│ train_mnist_c9146_00025   TERMINATED   0.000209626     0.559987   0.103125        1           0.168064 │
+│ train_mnist_c9146_00026   TERMINATED   0.00417292      0.312925   0.3375          4           0.553308 │
+│ train_mnist_c9146_00027   TERMINATED   0.00355139      0.177613   0.109375        1           0.164807 │
+│ train_mnist_c9146_00028   TERMINATED   0.00366686      0.487944   0.090625        1           0.164496 │
+│ train_mnist_c9146_00029   TERMINATED   0.00849236      0.491342   0.85           16           2.08851  │
+│ train_mnist_c9146_00030   TERMINATED   0.00264188      0.545382   0.109375        1           0.166811 │
+│ train_mnist_c9146_00031   TERMINATED   0.0014906       0.606265   0.06875         1           0.163964 │
+│ train_mnist_c9146_00032   TERMINATED   0.00414286      0.785904   0.878125       64           8.25563  │
+│ train_mnist_c9146_00033   TERMINATED   0.000117377     0.366454   0.078125        1           0.163207 │
+│ train_mnist_c9146_00034   TERMINATED   0.0097897       0.572895   0.875          64           8.32261  │
+│ train_mnist_c9146_00035   TERMINATED   0.000159141     0.856844   0.146875        4           0.572328 │
+│ train_mnist_c9146_00036   TERMINATED   0.00371032      0.542887   0.54375         4           0.555158 │
+│ train_mnist_c9146_00037   TERMINATED   0.000529861     0.515866   0.0375          1           0.165104 │
+│ train_mnist_c9146_00038   TERMINATED   0.00382488      0.501569   0.384375        4           0.553988 │
+│ train_mnist_c9146_00039   TERMINATED   0.000490227     0.452657   0.11875         4           0.557621 │
+│ train_mnist_c9146_00040   TERMINATED   0.00651816      0.548694   0.2625          4           0.555768 │
+│ train_mnist_c9146_00041   TERMINATED   0.000993988     0.193644   0.09375         1           0.165612 │
+│ train_mnist_c9146_00042   TERMINATED   0.000182241     0.166495   0.08125         1           0.163898 │
+│ train_mnist_c9146_00043   TERMINATED   0.00257471      0.402963   0.246875        4           0.549345 │
+│ train_mnist_c9146_00044   TERMINATED   0.00270158      0.100505   0.128125        1           0.164236 │
+│ train_mnist_c9146_00045   TERMINATED   0.000667767     0.358701   0.090625        1           0.165686 │
+│ train_mnist_c9146_00046   TERMINATED   0.00193882      0.123725   0.140625        1           0.163653 │
+│ train_mnist_c9146_00047   TERMINATED   0.00757351      0.553855   0.15            1           0.165924 │
+│ train_mnist_c9146_00048   TERMINATED   0.00126256      0.617107   0.146875        1           0.164435 │
+│ train_mnist_c9146_00049   TERMINATED   0.000184561     0.619014   0.08125         1           0.163943 │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Best config is: {'lr': 0.009964272936458532, 'momentum': 0.7220791468460453}

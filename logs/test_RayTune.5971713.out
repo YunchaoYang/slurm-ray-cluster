@@ -1,0 +1,10 @@
+head_node=c1000a-s11.ufhpc
+head_node_ip=172.16.204.121
+STARTING HEAD at c1000a-s11.ufhpc
+Head node IP: 172.16.204.121
+srun: error: Unable to create step for job 5971713: Requested node configuration is not available
+srun: error: Unable to create step for job 5971713: Invalid node name specified
+Traceback (most recent call last):
+  File "examples/mnist_pytorch_trainable.py", line 12, in <module>
+    import ray
+ModuleNotFoundError: No module named 'ray'
